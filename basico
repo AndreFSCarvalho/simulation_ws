@@ -1,0 +1,69 @@
+-------------------------------------------------------------
+ --- Checkar versão do ROS --- 
+
+env | grep ROS
+
+-------------------------------------------------------------
+
+ --- Criar Ambiente de trabalho Catkin --- 
+
+mkdir ~/catkin/src
+
+cd ~/catkin/src
+catkin_init_workspace
+rm CmakeLists.txt
+
+cd ~/catkin
+catkin_make
+
+echo "source ~/catkin/devel/setup.bash" >> ~/.bashrc
+não precisa -> source ~/catkin/devel/setup.bash
+-------------------------------------------------------------
+
+ --- Criar Pacotes --- 
+
+cd ~/catkin/src
+catkin_create_pkg -h
+catkin_create_pkg tutorial1 rospy
+cd ~/catkin/src/tutorial1
+roscd tutorial1
+
+cd ~/catkin
+catkin_make
+
+-------------------------------------------------------------
+
+ --- Criar um Publicador ---
+
+cd ~/catkin/src
+catkin_create_pkg tutorial rospy
+
+cd ~/catkin/src/tutorial/src
+nano publisher
+(coda o publisher)
+
+Roscore (em outro terminal)
+rosnode list
+
+
+chmod +x ~/catkin/src/tutorial/src/publisher.py
+
+rosrun tutorial publisher.py
+
+Roscore (em outro terminal)
+rosnode list (em outro terminal)
+rosgraph (em outro terminal)
+rostopic list | grep say_
+rostopic echo /say_hello
+
+
+
+
+
+
+
+
+
+
+
+
